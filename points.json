@@ -1,0 +1,108 @@
+[
+    {
+      "name": "Rynek w Bielsku-Białej",
+      "coordinates": [49.8225, 19.0431],
+      "questions": [
+        {
+          "question": "Jaka jest nazwa głównej ulicy w Bielsku-Białej?",
+          "options": ["A. 3 Maja", "B. Mickiewicza", "C. Bielska"],
+          "correct": "A. 3 Maja"
+        },
+        {
+          "question": "Kiedy odbywa się coroczny Festiwal Kultury?",
+          "options": ["A. W marcu", "B. W czerwcu", "C. W sierpniu"],
+          "correct": "B. W czerwcu"
+        },
+        {
+          "question": "Jak nazywa się teatr w Bielsku-Białej?",
+          "options": ["A. Teatr Polski", "B. Teatr im. Juliusza Słowackiego", "C. Teatr Lalek"],
+          "correct": "C. Teatr Lalek"
+        }
+      ]
+    },
+    {
+      "name": "Park Słowackiego",
+      "coordinates": [49.8327, 19.0436],
+      "questions": [
+        {
+          "question": "Jak nazywa się główna aleja w Parku Słowackiego?",
+          "options": ["A. Aleja Jana Pawła II", "B. Aleja Tysiąclecia", "C. Aleja Zielona"],
+          "correct": "B. Aleja Tysiąclecia"
+        },
+        {
+          "question": "Co znajduje się w centralnej części parku?",
+          "options": ["A. Staw", "B. Pomnik Jana Pawła II", "C. Fontanna"],
+          "correct": "A. Staw"
+        },
+        {
+          "question": "Jakie zwierzęta można spotkać w parku?",
+          "options": ["A. Lisy", "B. Łabędzie", "C. Sarny"],
+          "correct": "B. Łabędzie"
+        }
+      ]
+    },
+    {
+      "name": "Wzgórze Trzy Lipki",
+      "coordinates": [49.8283, 19.0609],
+      "questions": [
+        {
+          "question": "Jaki widok rozciąga się z Wzgórza Trzy Lipki?",
+          "options": ["A. Widok na miasto Bielsko-Biała", "B. Widok na Tatry", "C. Widok na jezioro Żywieckie"],
+          "correct": "A. Widok na miasto Bielsko-Biała"
+        },
+        {
+          "question": "Jaki pomnik znajduje się na Wzgórzu Trzy Lipki?",
+          "options": ["A. Pomnik Jana III Sobieskiego", "B. Pomnik Tadeusza Kościuszki", "C. Pomnik Walczącej Polski"],
+          "correct": "B. Pomnik Tadeusza Kościuszki"
+        },
+        {
+          "question": "Jakie wydarzenie historyczne jest związane z Wzgórzem Trzy Lipki?",
+          "options": ["A. Bitwa pod Bielskiem", "B. Powstanie Śląskie", "C. Rewolta w Bielsku-Białej"],
+          "correct": "B. Powstanie Śląskie"
+        }
+      ]
+    },
+    {
+      "name": "Zamek książąt Sułkowskich",
+      "coordinates": [49.8181, 19.0461],
+      "questions": [
+        {
+          "question": "Kiedy zamek został zbudowany?",
+          "options": ["A. W XIV wieku", "B. W XVI wieku", "C. W XIX wieku"],
+          "correct": "A. W XIV wieku"
+        },
+        {
+          "question": "Kto był fundatorem zamku?",
+          "options": ["A. Książę Sułkowski", "B. Książę Cieszyn", "C. Książę Opolski"],
+          "correct": "A. Książę Sułkowski"
+        },
+        {
+          "question": "Jaki zamek stoi w centrum miasta?",
+          "options": ["A. Zamek w Cieszynie", "B. Zamek w Żywcu", "C. Zamek książąt Sułkowskich"],
+          "correct": "C. Zamek książąt Sułkowskich"
+        }
+      ]
+    },
+    {
+      "name": "Bielski Skansen",
+      "coordinates": [49.8397, 19.0319],
+      "questions": [
+        {
+          "question": "Jakie budynki znajdują się w Bielskim Skansenie?",
+          "options": ["A. Młyny wodne", "B. Chaty góralskie", "C. Kościoły"],
+          "correct": "B. Chaty góralskie"
+        },
+        {
+          "question": "Co można zobaczyć w skansenie?",
+          "options": ["A. Tradycyjne narzędzia rolnicze", "B. Wystawy sztuki współczesnej", "C. Zbiory archeologiczne"],
+          "correct": "A. Tradycyjne narzędzia rolnicze"
+        },
+        {
+          "question": "Kiedy został założony Bielsk Skansen?",
+          "options": ["A. W 1967 roku", "B. W 1980 roku", "C. W 1990 roku"],
+          "correct": "A. W 1967 roku"
+        }
+      ]
+    }
+  ]
+  

@@ -1,0 +1,50 @@
+#map {
+    height: 100vh;
+    width: 100%;
+}
+
+#question-panel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none; /* Domyślnie ukryte */
+    max-width: 300px;
+}
+
+#question-text {
+    margin-bottom: 15px;
+}
+
+#options button {
+    margin: 5px 0;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+#options button:hover {
+    background: #0056b3;
+}
+
+#options button:active {
+    background: #003f7f;
+}
+
+.leaflet-control-locate {
+    background-color: #007bff;
+    border-radius: 50%;
+    color: white;
+}
+
+.leaflet-control-locate:hover {
+    background-color: #0056b3;
+}
