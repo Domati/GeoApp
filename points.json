@@ -1,32 +1,118 @@
 [
-  {
-      "name": "Rynek w Bielsku-Białej",
-      "description": "Centralny punkt miasta, otoczony zabytkowymi kamienicami. Idealne miejsce na spacer i odkrywanie historii Bielska-Białej.",
-      "coordinates": [49.8225, 19.0431]
-  },
-  {
-      "name": "Park Słowackiego",
-      "description": "Zielone serce miasta, doskonałe miejsce na relaks i odpoczynek w otoczeniu przyrody.",
-      "coordinates": [49.8327, 19.0436]
-  },
-  {
-      "name": "Wzgórze Trzy Lipki",
-      "description": "Znane miejsce widokowe, oferujące panoramiczne widoki na Bielsko-Białą i okoliczne góry.",
-      "coordinates": [49.8283, 19.0609]
-  },
-  {
-      "name": "Zamek książąt Sułkowskich",
-      "description": "Najstarszy zabytek Bielska-Białej, siedziba muzeum regionalnego, ukazującego bogatą historię regionu.",
-      "coordinates": [49.8181, 19.0461]
-  },
-  {
-      "name": "Bielski Skansen",
-      "description": "Muzeum na wolnym powietrzu, prezentujące tradycyjną architekturę drewnianą i kulturę Beskidów.",
-      "coordinates": [49.8397, 19.0319]
-  },
-  {
-      "name": "Testowy Punkt",
-      "description": "To jest punkt testowy blisko Ciebie. Służy do testowania funkcji aplikacji.",
-      "coordinates": [49.823923, 19.0594545]
-  }
-]
+    {
+        "name": "Rynek w Bielsku-Białej",
+        "description": "Centralny punkt miasta, otoczony zabytkowymi kamienicami. Idealne miejsce na spacer i odkrywanie historii Bielska-Białej.",
+        "coordinates": [49.8225, 19.0431],
+        "quiz": [
+          {
+              "question": "Jak nazywa się główny rynek w Bielsku-Białej?",
+              "options": ["Rynek Wschodni", "Rynek Główny", "Rynek Śródmiejski", "Rynek Starego Miasta"],
+              "answer": "Rynek Główny"
+          },
+          {
+              "question": "Jakie zabytki znajdują się w okolicach Rynku w Bielsku-Białej?",
+              "options": ["Kamienice, kościół i ratusz", "Zamek i kościół", "Muzeum historyczne i pałac", "Pałac kultury"],
+              "answer": "Kamienice, kościół i ratusz"
+          }
+        ]
+    },
+    {
+        "name": "Park Słowackiego",
+        "description": "Zielone serce miasta, doskonałe miejsce na relaks i odpoczynek w otoczeniu przyrody.",
+        "coordinates": [49.8327, 19.0436],
+        "quiz": [
+          {
+              "question": "W którym roku założono Park Słowackiego w Bielsku-Białej?",
+              "options": ["1790", "1850", "1900", "1950"],
+              "answer": "1900"
+          },
+          {
+              "question": "Jakie atrakcje znajdują się w Parku Słowackiego?",
+              "options": ["Fontanny, alejki spacerowe, boiska sportowe", "Zamek, teatr, muzeum", "Muzeum, ratusz, teatr", "Zabytkowe kamienice, sklepy"],
+              "answer": "Fontanny, alejki spacerowe, boiska sportowe"
+          }
+        ]
+    },
+    {
+        "name": "Wzgórze Trzy Lipki",
+        "description": "Znane miejsce widokowe, oferujące panoramiczne widoki na Bielsko-Białą i okoliczne góry.",
+        "coordinates": [49.8283, 19.0609],
+        "quiz": [
+          {
+              "question": "Jakie góry widać z Wzgórza Trzy Lipki?",
+              "options": ["Beskidy", "Tatry", "Karkonosze", "Sudety"],
+              "answer": "Beskidy"
+          },
+          {
+              "question": "Co charakteryzuje Wzgórze Trzy Lipki?",
+              "options": ["Widok na miasto i góry", "Ruiny zamku", "Muzeum historyczne", "Szlak turystyczny"],
+              "answer": "Widok na miasto i góry"
+          }
+        ]
+    },
+    {
+        "name": "Zamek książąt Sułkowskich",
+        "description": "Najstarszy zabytek Bielska-Białej, siedziba muzeum regionalnego, ukazującego bogatą historię regionu.",
+        "coordinates": [49.8181, 19.0461],
+        "quiz": [
+          {
+              "question": "Kiedy zbudowano Zamek książąt Sułkowskich w Bielsku-Białej?",
+              "options": ["XIII wiek", "XV wiek", "XVII wiek", "XVIII wiek"],
+              "answer": "XIII wiek"
+          },
+          {
+              "question": "Co można zobaczyć w Zamku książąt Sułkowskich?",
+              "options": ["Muzeum regionalne", "Muzeum sztuki współczesnej", "Muzeum techniki", "Muzeum przyrody"],
+              "answer": "Muzeum regionalne"
+          }
+        ]
+    },
+    {
+        "name": "Bielski Skansen",
+        "description": "Muzeum na wolnym powietrzu, prezentujące tradycyjną architekturę drewnianą i kulturę Beskidów.",
+        "coordinates": [49.8397, 19.0319],
+        "quiz": [
+          {
+              "question": "W jakim stylu architektonicznym są budynki w Bielskim Skansenie?",
+              "options": ["Beskidzkim", "Gotyckim", "Barokowym", "Renesansowym"],
+              "answer": "Beskidzkim"
+          },
+          {
+              "question": "Jakie tradycje można poznać w Bielskim Skansenie?",
+              "options": ["Tradycje ludowe Beskidów", "Historia przemysłu", "Tradycje artystyczne", "Tradycje dworskie"],
+              "answer": "Tradycje ludowe Beskidów"
+          }
+        ]
+    },
+    {
+        "name": "Uniwersytet Bielsko Bialski",
+        "description": "Najlepsza uczelnia na świecie!",
+        "coordinates": [49.78357014796905, 19.058617181636667],
+        "quiz": [
+          {
+              "question": "W jakiej sali teraz jesteśmy?",
+              "options": ["L128", "B313", "A112", "Żabka"],
+              "answer": "B313"
+          },
+          {
+              "question": "Jaką ocenę dostanę za ten projekt?",
+              "options": ["5", "4", "3"],
+              "answer": "5"
+          }
+        ]
+    },
+    {
+        "name": "Testowy Punkt",
+        "description": "To jest punkt testowy blisko Ciebie. Służy do testowania funkcji aplikacji.",
+        "coordinates": [49.823923, 19.0594545],
+        "quiz": [
+          {
+              "question": "Jakie jest największe miasto w Polsce?",
+              "options":  ["Warszawa", "Kraków", "Wrocław", "Poznań"],
+              "answer": "Warszawa"
+          }]
+        }
+    ]
+    
+
+  

@@ -8,13 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let stepsVisible = true; // Zmienna przechowująca stan widoczności kroków
     let stepsToggleButton = null;
     let markers = []; // Tablica markerów, aby później sprawdzić dotarcie do punktu
-
+    let previousCoords = null;
 
     function startLocationTracking() {
         navigator.geolocation.watchPosition(
             (position) => {
                 userCoords = [position.coords.latitude, position.coords.longitude];
                 console.log('Aktualna lokalizacja:', userCoords); // Debugowanie
+                // Jeśli lokalizacja się zmieniła, sprawdzamy odległość do punktów
+                if (!previousCoords || (userCoords[0] !== previousCoords[0] || userCoords[1] !== previousCoords[1])) {
+                    checkArrival();
+                    previousCoords = userCoords; // Aktualizujemy poprzednią lokalizację
+                }
                 map.setView(userCoords, 13); // Ustaw widok mapy na nową lokalizację
             },
             (error) => {
@@ -89,48 +94,60 @@ loadPoints();
 }
 
     // Funkcja do ładowania punktów
-    function loadPoints() {
-        fetch('points.json')
-            .then(response => response.json())
-            .then(data => {
-                points = data;
-                console.log('Punkty załadowane:', points); // Debugowanie, sprawdzanie danych
-                data.forEach((point, index) => {
-                    const marker = L.marker(point.coordinates).addTo(map);
-                    marker.bindPopup(`
-                        <b>${point.name}</b>
-                        <p>${point.description}</p>
-                        <a href="#" class="route-button" data-index="${index}">Wyznacz trasę</a>
-                        <a href="#" class="teleport-button" data-index="${index}">Teleportuj</a>
-                    `);
+   // Funkcja do ładowania punktów
+   function loadPoints() {
+    fetch('points.json')
+        .then(response => response.json())
+        .then(data => {
+            points = data;
+            console.log('Punkty załadowane:', points); // Debugowanie, sprawdzanie danych
+            data.forEach((point, index) => {
+                const marker = L.marker(point.coordinates).addTo(map);
+                marker.bindPopup(`
+                    <b>${point.name}</b>
+                    <p>${point.description}</p>
+                    <a href="#" class="route-button" data-index="${index}">Wyznacz trasę</a>
+                    <a href="#" class="teleport-button" data-index="${index}">Teleportuj</a>
+                    <a href="#" class="quiz-button" data-index="${index}">Rozpocznij quiz</a>
+                `);
 
-                    // Obsługa kliknięcia przycisku "Wyznacz trasę"
-                    marker.on('popupopen', () => {
-                        const routeButton = marker.getPopup().getElement().querySelector('.route-button');
-                        const teleportButton = marker.getPopup().getElement().querySelector('.teleport-button');
+                // Obsługa kliknięcia przycisków w popupie
+                marker.on('popupopen', () => {
+                    const routeButton = marker.getPopup().getElement().querySelector('.route-button');
+                    const teleportButton = marker.getPopup().getElement().querySelector('.teleport-button');
+                    const quizButton = marker.getPopup().getElement().querySelector('.quiz-button');
 
-                        if (routeButton) {
-                            routeButton.addEventListener('click', (e) => {
-                                e.preventDefault();
-                                const pointIndex = routeButton.getAttribute('data-index');
-                                const destinationCoords = points[pointIndex].coordinates;
-                                drawRoute(destinationCoords);
-                            });
-                        }
+                    if (routeButton) {
+                        routeButton.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const pointIndex = routeButton.getAttribute('data-index');
+                            const destinationCoords = points[pointIndex].coordinates;
+                            drawRoute(destinationCoords);
+                        });
+                    }
 
-                        if (teleportButton) {
-                            teleportButton.addEventListener('click', (e) => {
-                                e.preventDefault();
-                                const pointIndex = teleportButton.getAttribute('data-index');
-                                const teleportCoords = points[pointIndex].coordinates;
-                                teleportTo(teleportCoords);
-                            });
-                        }
-                    });
+                    if (teleportButton) {
+                        teleportButton.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const pointIndex = teleportButton.getAttribute('data-index');
+                            const teleportCoords = points[pointIndex].coordinates;
+                            teleportTo(teleportCoords);
+                        });
+                    }
+
+                    if (quizButton) {
+                        quizButton.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const pointIndex = quizButton.getAttribute('data-index');
+                            openQuizPopup(points[pointIndex]); // Nowa funkcja do wyświetlania quizu
+                        });
+                    }
                 });
-            })
-            .catch(error => console.error('Błąd podczas ładowania punktów:', error));
-    }
+            });
+        })
+        .catch(error => console.error('Błąd podczas ładowania punktów:', error));
+}
+
 
     // Funkcja do przełączania widoczności kroków
     function showToggleButton() {
@@ -185,6 +202,7 @@ function checkArrival() {
                 <b>${point.name}</b>
                 <p>${point.description}</p>
             `).openPopup(); // Otwarcie popup
+            openQuizPopup(point);
         }
     });
 }
@@ -216,9 +234,87 @@ function showPointDescription(point) {
         `;
     }
 }
+// Funkcja do obsługi wysyłania odpowiedzi
+function submitQuiz(pointName, marker) {
+    const quizQuestions = document.querySelectorAll('.quiz-question');
+    let correctAnswers = 0;
+
+    // Sprawdzamy odpowiedzi
+    quizQuestions.forEach((questionElement, index) => {
+        const selectedOption = questionElement.querySelector('input[type="radio"]:checked');
+        if (selectedOption) {
+            const correctAnswer = selectedOption.getAttribute('data-answer');
+            if (selectedOption.value === correctAnswer) {
+                correctAnswers++;
+            }
+        }
+    });
+
+    // Znajdujemy kontener na wynik i wyświetlamy wynik w oknie quizu
+    const resultContainer = document.getElementById('quiz-result');
+    if (resultContainer) {
+        resultContainer.innerHTML = `Twój wynik: ${correctAnswers} / ${quizQuestions.length}`;
+    }
+
+    // Usuwamy zamykanie popupu – użytkownik będzie zamykał okno ręcznie
+}
+
+
+// Funkcja do otwierania quizu w popupie
+function openQuizPopup(point) {
+    if (point.quiz && Array.isArray(point.quiz) && point.coordinates) {
+        const quizData = point.quiz;
+
+        // Tworzymy HTML dla quizu
+        let quizHtml = `<h3>Quiz: ${point.name}</h3>
+        <br>
+                        <b>${point.name}</b>
+                <p>${point.description}</p>`;
+        
+        quizData.forEach((q, index) => {
+            quizHtml += `
+                <div class="quiz-question">
+                    <p><strong>${q.question}</strong></p>
+                    ${q.options.map((option, i) => `
+                        <label>
+                            <input type="radio" name="question_${index}" value="${option}" data-answer="${q.answer}">
+                            ${option}
+                        </label>
+                        <br>
+                    `).join('')}
+                </div>
+            `;
+        });
+
+        // Dodajemy miejsce na przycisk i wynik
+        quizHtml += `
+            <button id="submit-quiz">Wyślij odpowiedzi</button>
+            <div id="quiz-result" style="margin-top: 20px;"></div>
+        `;
+
+        // Tworzymy marker i dodajemy quiz do popupu
+        const marker = L.marker(point.coordinates).addTo(map);
+        marker.bindPopup(quizHtml).openPopup();
+
+        // Dodajemy zdarzenie kliknięcia dla przycisku po otwarciu popupu
+        setTimeout(() => {
+            const submitButton = document.getElementById('submit-quiz');
+            if (submitButton) {
+                submitButton.addEventListener('click', () => submitQuiz(point.name, marker));
+            }
+        }, 0); // Czekamy na wyrenderowanie elementów HTML w popupie
+    } else {
+        console.log("Brak quizu lub współrzędnych dla tego punktu.");
+    }
+}
+
+
+
+
 
 // Ustawienie interwału do sprawdzania, czy użytkownik dotarł do punktu
-setInterval(checkArrival, 5000); // Sprawdzaj co 5 sekund
+//setInterval(checkArrival, 5000); // Sprawdzaj co 5 sekund
+
 
 
 
